@@ -45,34 +45,12 @@ void setup() {
    
   Serial.begin(115200);
 }
-/*
-void setX9C103SValue(int value) {
-  // Обмежте значення від 0 до 1023
-  value = constrain(value, 0, 1023);
-  // Виконайте лінійне відображення значення на діапазон від 0 до 10,000
-  int mappedValue = map(value, 0, 1023, 0, 99);
-  digitalWrite(x9c103sUdPin, HIGH);  // Установіть U/D в HIGH для збільшення значення
-  for (int i = 0; i < mappedValue; i++) {
-    digitalWrite(x9c103sIncPin, HIGH);
-    digitalWrite(x9c103sIncPin, LOW);
-  }
-  digitalWrite(x9c103sCsPin, HIGH);  // Завершіть зміну значення
-}
-*/
-
 void loop() {
-
-  
   eb.tick();
   potentiometer1Value = analogRead(A1);
   potentiometer2Value = analogRead(A2);
   potentiometer3Value = analogRead(A3);
-// состояния
-     //Serial.println(eb.pressing());
-    // Serial.println(eb.holding());
-     Serial.println(eb.busy());
-     //Serial.println(eb.waiting());
-  
+ 
   if (eb.press()) {
     digitalWrite(6, HIGH);
     digitalWrite(7, LOW);
@@ -82,7 +60,7 @@ void loop() {
     Serial.println("456");
     Serial.println("Button pressed");
 
-   //setX9C103SValue(potentiometer2Value); // Встановити значення X9C103S при натисканні кнопки
+   
   }
   if (eb.step()) {
     Serial.println("step");
@@ -116,7 +94,7 @@ void loop() {
     Serial.println(potentiometer3Value);
     Serial.println("Button released");
       digitalWrite(relayControlPin, LOW);
-    //setX9C103SValue(potentiometer1Value); // Встановити значення X9C103S при відпусканні кнопки
+
   }
    
 /*
